@@ -39,7 +39,15 @@ function resolveDemoUser(username, password) {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem('user')
-    return stored ? JSON.parse(stored) : null
+    if (!stored) return null
+
+    try {
+      return JSON.parse(stored)
+    } catch {
+      localStorage.removeItem('access')
+      localStorage.removeItem('user')
+      return null
+    }
   })
 
   const login = useCallback(async (username, password) => {

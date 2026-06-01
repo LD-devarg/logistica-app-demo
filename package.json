@@ -2,7 +2,7 @@
     "name": "gestion-logistica-demo",
     "private": false,
     "version": "0.0.0",
-    "homepage": "https://ld-devarg.github.io/gestion-logistica/",
+    "homepage": "https://ld-devarg.github.io/logistica-app-demo/",
     "type": "module",
     "engines": {
         "node": ">=20.0.0"

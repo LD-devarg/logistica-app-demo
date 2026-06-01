@@ -62,7 +62,7 @@ export default function LoginPage() {
     submitCredentials()
   }
 
-  const useDemoAccount = (account) => {
+  const loginWithDemoAccount = (account) => {
     setUsername(account.username)
     setPassword(account.password)
     submitCredentials(account.username, account.password)
@@ -150,7 +150,7 @@ export default function LoginPage() {
             {demoAccounts.map((account) => (
               <Button
                 key={account.username}
-                onClick={() => useDemoAccount(account)}
+                onClick={() => loginWithDemoAccount(account)}
                 variant="outlined"
                 disabled={loading}
                 startIcon={account.icon}

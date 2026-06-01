@@ -19,10 +19,6 @@ coverage
 .env.*
 !.env.example
 
-# Deploy / tooling
-.vercel
-.netlify
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
