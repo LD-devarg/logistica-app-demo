@@ -81,7 +81,7 @@ export default function ProveedoresPage() {
   return (
     <Box>
       <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-        <Box>
+        <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.35)', letterSpacing: 1, textTransform: 'uppercase', fontSize: 11 }}>Administración</Typography>
           <Typography variant="h5" sx={{ fontWeight: 700, color: '#fff', mt: 0.5 }}>Proveedores</Typography>
         </Box>

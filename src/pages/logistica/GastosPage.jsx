@@ -145,7 +145,7 @@ function GastoForm({ onSuccess, proveedores, editGasto = null }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!form.proveedor) { setError('SeleccionÃ¡ un proveedor.'); return }
+    if (!form.proveedor) { setError('Seleccioná un proveedor.'); return }
     setLoading(true); setError('')
     try {
       const payload = {
@@ -566,7 +566,7 @@ export default function GastosPage() {
                                         {comb.lts_comb} lts x {fmtPeso(comb.precio_lts_comb)} / lt
                                       </Typography>
                                       <Typography sx={{ color: 'rgba(255,255,255,0.45)', fontSize: 11, mt: 0.4 }}>
-                                        Bruto: {fmtPeso(comb.precio_total_comb)} Â· Neto con dto. 20%: {fmtPeso(g.total_combustible)}
+                                        Bruto: {fmtPeso(comb.precio_total_comb)} · Neto con dto. 20%: {fmtPeso(g.total_combustible)}
                                       </Typography>
                                       <Typography sx={{ color: 'rgba(255,255,255,0.35)', fontSize: 11, mt: 0.4 }}>
                                         Remito: {g.remito_combustible || '-'}
@@ -648,9 +648,9 @@ export default function GastosPage() {
         <DialogContent>
           {deleteError && <Alert severity="error" sx={{ mb: 2 }}>{deleteError}</Alert>}
           <Typography sx={{ color: '#cbd5e1', fontSize: 14 }}>
-            Â¿Eliminar el gasto de <strong>{confirmDelete?.proveedor_nombre}</strong> del{' '}
+            ¿Eliminar el gasto de <strong>{confirmDelete?.proveedor_nombre}</strong> del{' '}
             {fmtFecha(confirmDelete?.fecha_gasto)} por <strong>{fmtPeso(confirmDelete?.total_gasto)}</strong>?
-            Esta acciÃ³n no se puede deshacer.
+            Esta acción no se puede deshacer.
           </Typography>
         </DialogContent>
         <Box sx={{ display: 'flex', gap: 1.5, justifyContent: 'flex-end', px: 3, pb: 3 }}>

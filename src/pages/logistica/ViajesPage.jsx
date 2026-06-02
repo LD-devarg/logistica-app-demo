@@ -199,7 +199,7 @@ function ViajeForm({ onSuccess, clientes, proveedores, todosAdicionales, editVia
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!tarifa) { setError('No hay tarifa para esta combinaciÃ³n de cliente y destino.'); return }
+    if (!tarifa) { setError('No hay tarifa para esta combinación de cliente y destino.'); return }
     setLoading(true); setError('')
     const adicionalesPayload = form.adicionales
       .filter((item) => item.adicional_id)
@@ -339,7 +339,7 @@ function ViajeForm({ onSuccess, clientes, proveedores, todosAdicionales, editVia
             </Grid>
             {esAlMomento && (
               <Grid size={{ xs: 7, sm: 3 }}>
-                <TextField label="DescripciÃ³n" value={item.descripcion}
+                <TextField label="Descripción" value={item.descripcion}
                   onChange={(e) => setAdicionalDescripcion(idx, e.target.value)}
                   fullWidth size="small" sx={darkField} inputProps={{ maxLength: 200 }} />
               </Grid>
@@ -765,8 +765,8 @@ export default function ViajesPage() {
         <DialogContent>
           {deleteError && <Alert severity="error" sx={{ mb: 2 }}>{deleteError}</Alert>}
           <Typography sx={{ color: '#cbd5e1', fontSize: 14 }}>
-            Â¿Eliminar el viaje del <strong>{confirmDelete && fmtFecha(confirmDelete.fecha)}</strong> â€”{' '}
-            {confirmDelete?.proveedor_nombre}? Esta acciÃ³n no se puede deshacer.
+            ¿Eliminar el viaje del <strong>{confirmDelete && fmtFecha(confirmDelete.fecha)}</strong> –{' '}
+            {confirmDelete?.proveedor_nombre}? Esta acción no se puede deshacer.
           </Typography>
         </DialogContent>
         <Box sx={{ display: 'flex', gap: 1.5, justifyContent: 'flex-end', px: 3, pb: 3 }}>

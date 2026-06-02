@@ -122,15 +122,15 @@ export default function DocumentacionPage() {
 
   return (
     <Box>
-      <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 2 }}>
-        <Box>
+      <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 2 }}>
+        <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.35)', letterSpacing: 1, textTransform: 'uppercase', fontSize: 11 }}>
-            Administracion
+            Administración
           </Typography>
-          <Typography variant="h5" sx={{ fontWeight: 700, color: '#fff', mt: 0.5 }}>
-            Documentacion de proveedores
+          <Typography variant="h5" sx={{ fontWeight: 700, color: '#fff'}}>
+            Documentación de proveedores
           </Typography>
-          <Typography sx={{ color: 'rgba(255,255,255,0.45)', fontSize: 13, mt: 0.5 }}>
+          <Typography sx={{ color: 'rgba(255,255,255,0.45)', fontSize: 13 }}>
             Consulta los archivos cargados por cada proveedor en su carpeta de Drive.
           </Typography>
         </Box>
@@ -300,7 +300,7 @@ export default function DocumentacionPage() {
                       {doc.name}
                     </Typography>
                     <Typography sx={{ color: 'rgba(255,255,255,0.42)', fontSize: 11 }}>
-                      {formatDate(doc.updated_at)} Â· {formatSize(doc.size)}
+                      {formatDate(doc.updated_at)} · {formatSize(doc.size)}
                     </Typography>
                   </Box>
                   <Button

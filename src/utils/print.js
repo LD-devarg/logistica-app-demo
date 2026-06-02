@@ -1,8 +1,8 @@
 ﻿import client from '../api/client'
 
-// â”€â”€â”€ Utilidades de impresiÃ³n y guardado en demo â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Utilidades de impresión y guardado en demo ──────────────────────────────
 // printPreliquidacion(preliq) y printLiquidacion(liq):
-//   1. Abre ventana de impresiÃ³n (window.print)
+//   1. Abre ventana de impresión (window.print)
 //   2. Si el objeto tiene carpeta_drive_id, simula el guardado del PDF
 const EMPRESA = 'LOGIDEMO'
 const LOGO_PATH = '/favicon.svg'
@@ -59,7 +59,7 @@ async function inlineLogoForPdf(html) {
   }
 }
 
-// â”€â”€â”€ Nombre de archivo â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Nombre de archivo ────────────────────────────────────────────────────────
 // Formato: FECHA-DESDE - FECHA-HASTA - NOMBRE-PROVEEDOR.pdf
 function buildFilename(periodoDesde, periodoHasta, proveedorNombre) {
   const formatDate = (value) => {
@@ -80,12 +80,12 @@ function buildFilename(periodoDesde, periodoHasta, proveedorNombre) {
 const fmtAdicsHTML = (snap) => {
   if (!snap || !Array.isArray(snap) || snap.length === 0) return null
   return snap.map((a) => {
-    const desc = a.descripcion ? ` â€” ${a.descripcion}` : ''
+    const desc = a.descripcion ? ` – ${a.descripcion}` : ''
     return `<div class="adic-item"><span class="adic-nombre">${a.nombre}${desc}</span><span class="adic-precio">${fmtPeso(a.precio)}</span></div>`
   }).join('')
 }
 
-// â”€â”€â”€ CSS base compartido â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── CSS base compartido ──────────────────────────────────────────────────────
 const CSS = `
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -104,7 +104,7 @@ const CSS = `
     padding-top: 28px;
   }
 
-  /* â”€â”€ Header â”€â”€ */
+  /* ── Header ── */
   .doc-header {
     display: flex;
     justify-content: space-between;
@@ -151,7 +151,7 @@ const CSS = `
     font-variant-numeric: tabular-nums;
   }
 
-  /* â”€â”€ Meta info grid â”€â”€ */
+  /* ── Meta info grid ── */
   .meta {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -190,7 +190,7 @@ const CSS = `
     color: #1e40af;
   }
 
-  /* â”€â”€ Section title â”€â”€ */
+  /* ── Section title ── */
   .section-title {
     display: flex;
     align-items: center;
@@ -213,7 +213,7 @@ const CSS = `
     letter-spacing: 1px;
   }
 
-  /* â”€â”€ Tabla â”€â”€ */
+  /* ── Tabla ── */
   table {
     width: 100%;
     border-collapse: collapse;
@@ -255,7 +255,7 @@ const CSS = `
   }
   tfoot td.amount { text-align: right; font-weight: 800; color: #1e3a8a; font-size: 11.5px; }
 
-  /* â”€â”€ Totales â”€â”€ */
+  /* ── Totales ── */
   .totals-wrap {
     display: flex;
     justify-content: flex-end;
@@ -288,7 +288,7 @@ const CSS = `
   .t-row.final .t-lbl { color: rgba(255,255,255,0.75); font-size: 11.5px; font-weight: 600; }
   .t-row.final .t-val { color: #fff; font-size: 14px; font-weight: 900; }
 
-  /* â”€â”€ Footer â”€â”€ */
+  /* ── Footer ── */
   .doc-footer {
     margin-top: 40px;
     padding-top: 12px;
@@ -299,7 +299,7 @@ const CSS = `
     color: #94a3b8;
   }
 
-  /* â”€â”€ Adicionales detail â”€â”€ */
+  /* ── Adicionales detail ── */
   .adic-item {
     display: flex;
     justify-content: space-between;
@@ -310,7 +310,7 @@ const CSS = `
   .adic-nombre { flex: 1; }
   .adic-precio { font-weight: 600; color: #1e40af; white-space: nowrap; margin-left: 8px; }
 
-  /* â”€â”€ Print â”€â”€ */
+  /* ── Print ── */
   @media print {
     html, body {
       width: 210mm;
@@ -342,7 +342,7 @@ const CSS = `
   }
 `
 
-// â”€â”€â”€ PÃ¡gina de gastos â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Página de gastos ─────────────────────────────────────────────────────────
 function buildGastosPage(gastos) {
   if (!gastos || gastos.length === 0) return ''
   const rows = gastos.map((g, i) => {
@@ -353,28 +353,28 @@ function buildGastosPage(gastos) {
     const adelanto = parseFloat(g.adelanto_otros || 0)
 
     const combustCell = bruto > 0
-      ? `<div>${comb.lts_comb} lts Ã— ${fmtPeso(comb.precio_lts_comb)}/lt</div>
-         <div style="font-size:10px;color:#64748b">Bruto: ${fmtPeso(bruto)} âˆ’ dto. 20% = <strong>${fmtPeso(neto)}</strong></div>
+      ? `<div>${comb.lts_comb} lts × ${fmtPeso(comb.precio_lts_comb)}/lt</div>
+         <div style="font-size:10px;color:#64748b">Bruto: ${fmtPeso(bruto)} − dto. 20% = <strong>${fmtPeso(neto)}</strong></div>
          ${g.remito_combustible ? `<div style="font-size:10px;color:#94a3b8">Rem: ${g.remito_combustible}</div>` : ''}`
-      : '<span style="color:#94a3b8;font-style:italic">â€”</span>'
+      : '<span style="color:#94a3b8;font-style:italic">–</span>'
 
     const variosCell = varios.length > 0
       ? varios.map((v) => `<div>${v.descripcion}: <strong>${fmtPeso(v.monto)}</strong></div>`).join('')
-      : '<span style="color:#94a3b8;font-style:italic">â€”</span>'
+      : '<span style="color:#94a3b8;font-style:italic">–</span>'
 
     return `<tr>
       <td style="color:#94a3b8">${i + 1}</td>
       <td>${fmtFecha(g.fecha_gasto)}</td>
       <td>${combustCell}</td>
       <td>${variosCell}</td>
-      <td class="r">${adelanto > 0 ? fmtPeso(adelanto) : '<span style="color:#94a3b8">â€”</span>'}</td>
+      <td class="r">${adelanto > 0 ? fmtPeso(adelanto) : '<span style="color:#94a3b8">–</span>'}</td>
       <td class="amount">${fmtPeso(g.total_gasto)}</td>
     </tr>`
   }).join('\n')
 
   return `
   <div class="gastos-page">
-    <div class="section-title"><span>Gastos del perÃ­odo (${gastos.length} registros)</span></div>
+    <div class="section-title"><span>Gastos del período (${gastos.length} registros)</span></div>
     <table>
       <thead>
         <tr>
@@ -391,7 +391,7 @@ function buildGastosPage(gastos) {
   </div>`
 }
 
-// â”€â”€â”€ Template HTML â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Template HTML ────────────────────────────────────────────────────────────
 function buildHTML({ tipo, id, proveedorNombre, periodoDesde, periodoHasta, fechaEmision, extraMeta = [], rows, totalSinIva, totalConIva, gastosPeriodo, adeudadoFinal, gastos = [] }) {
   const now = new Date()
   const fechaGen = now.toLocaleDateString('es-AR')
@@ -404,7 +404,7 @@ function buildHTML({ tipo, id, proveedorNombre, periodoDesde, periodoHasta, fech
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>${tipo} #${numDoc} â€” ${proveedorNombre}</title>
+  <title>${tipo} #${numDoc} – ${proveedorNombre}</title>
   <style>${CSS}</style>
 </head>
 <body>
@@ -426,11 +426,11 @@ function buildHTML({ tipo, id, proveedorNombre, periodoDesde, periodoHasta, fech
       <div class="meta-val primary">${proveedorNombre}</div>
     </div>
     <div class="meta-box">
-      <div class="meta-lbl">PerÃ­odo</div>
-      <div class="meta-val">${fmtFecha(periodoDesde)} â€” ${fmtFecha(periodoHasta)}</div>
+      <div class="meta-lbl">Período</div>
+      <div class="meta-val">${fmtFecha(periodoDesde)} – ${fmtFecha(periodoHasta)}</div>
     </div>
     <div class="meta-box">
-      <div class="meta-lbl">Fecha de emisiÃ³n</div>
+      <div class="meta-lbl">Fecha de emisión</div>
       <div class="meta-val">${fmtFecha(fechaEmision)}</div>
     </div>
     ${extraMeta.map(({ label, value }) => `
@@ -462,7 +462,7 @@ function buildHTML({ tipo, id, proveedorNombre, periodoDesde, periodoHasta, fech
         <td>${d.cliente_snapshot || '-'}</td>
         <td>${d.salida_snapshot || '-'}</td>
         <td class="${d.remito_snapshot ? '' : 'muted'}">${d.remito_snapshot || '-'}</td>
-        <td>${adicsHTML || '<span class="muted">â€”</span>'}</td>
+        <td>${adicsHTML || '<span class="muted">–</span>'}</td>
         <td class="amount">${fmtPeso(d.tarifa_sin_iva)}</td>
       </tr>`
   }).join('\n      ')}
@@ -490,7 +490,7 @@ function buildHTML({ tipo, id, proveedorNombre, periodoDesde, periodoHasta, fech
         <span class="t-val" style="font-size:12px; font-weight:600;">${fmtPeso(totalConIva)}</span>
       </div>
       <div class="t-row gastos">
-        <span class="t-lbl" style="font-size:12px; font-weight:600;">(-) Gastos del perÃ­odo</span>
+        <span class="t-lbl" style="font-size:12px; font-weight:600;">(-) Gastos del período</span>
         <span class="t-val" style="font-size:12px; font-weight:600;">${fmtPeso(gastosPeriodo)}</span>
       </div>
       <div class="t-row final">
@@ -511,11 +511,11 @@ function buildHTML({ tipo, id, proveedorNombre, periodoDesde, periodoHasta, fech
 </html>`
 }
 
-// â”€â”€â”€ Abrir ventana e imprimir â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Abrir ventana e imprimir ─────────────────────────────────────────────────
 function openAndPrint(html, title, { afterPrint } = {}) {
   const w = window.open('', '_blank', 'width=960,height=720,toolbar=0,menubar=0')
   if (!w) {
-    alert('El navegador bloqueÃ³ la ventana emergente. HabilitÃ¡ los pop-ups para este sitio.')
+    alert('El navegador bloqueó la ventana emergente. Habilitá los pop-ups para este sitio.')
     return null
   }
   w.document.write(html)
@@ -550,16 +550,16 @@ function openAndPrint(html, title, { afterPrint } = {}) {
   return w
 }
 
-// â”€â”€â”€ Subir PDF a modo demo simulado â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Subir PDF a modo demo simulado ───────────────────────────────
 async function uploadToDrive(html, filename, folderId) {
   await new Promise((resolve) => setTimeout(resolve, 250))
   return { ok: true, filename, folderId, demo: true }
 }
 
-// â”€â”€â”€ PreliquidaciÃ³n â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Preliquidación ───────────────────────────────────────────────────────────
 function buildPreliquidacionDocument(preliq) {
   const html = buildHTML({
-    tipo: 'PreliquidaciÃ³n',
+    tipo: 'Preliquidación',
     id: preliq.id,
     proveedorNombre: preliq.proveedor_nombre,
     periodoDesde: preliq.periodo_desde,
@@ -599,17 +599,17 @@ export function printPreliquidacion(preliq) {
   openAndPrint(html, filename)
 }
 
-// â”€â”€â”€ LiquidaciÃ³n â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Liquidación ──────────────────────────────────────────────────────────────
 function buildLiquidacionDocument(liq) {
   const html = buildHTML({
-    tipo: 'LiquidaciÃ³n',
+    tipo: 'Liquidación',
     id: liq.id,
     proveedorNombre: liq.proveedor_nombre,
     periodoDesde: liq.periodo_desde,
     periodoHasta: liq.periodo_hasta,
     fechaEmision: liq.fecha,
     extraMeta: [
-      { label: 'NÂ° Factura', value: liq.factura || '-' },
+      { label: 'N° Factura', value: liq.factura || '-' },
       { label: 'Fecha de pago', value: fmtFecha(liq.fecha_pago) },
     ],
     rows: liq.detalles || [],

@@ -236,7 +236,7 @@ export default function PreliquidacionesPage() {
 
   const handleGenerar = async () => {
     if (!proveedor || !desde || !hasta || selectedViajes.length === 0) {
-      setError('SeleccionÃ¡ al menos un viaje.')
+      setError('Seleccioná al menos un viaje.')
       return
     }
     setLoading(true)
@@ -251,7 +251,7 @@ export default function PreliquidacionesPage() {
         gasto_ids: selectedGastos.map((g) => g.id),
       }
       await client.post('/operaciones/preliquidaciones/generar/', payload)
-      setSuccess('PreliquidaciÃ³n generada correctamente.')
+      setSuccess('Preliquidación generada correctamente.')
       setBuscado(false)
       setViajes([])
       setGastos([])
@@ -272,9 +272,9 @@ export default function PreliquidacionesPage() {
     try {
       await client.patch(`/operaciones/preliquidaciones/${preliqId}/`, { estado: nuevoEstado })
       const mensajes = {
-        enviada: 'PreliquidaciÃ³n enviada.',
-        confirmada: 'PreliquidaciÃ³n confirmada.',
-        para_revisar: 'PreliquidaciÃ³n rechazada.',
+        enviada: 'Preliquidación enviada.',
+        confirmada: 'Preliquidación confirmada.',
+        para_revisar: 'Preliquidación rechazada.',
       }
       setSuccess(mensajes[nuevoEstado] || 'Estado actualizado.')
       refrescarHistorial()
@@ -292,15 +292,15 @@ export default function PreliquidacionesPage() {
       await client.patch(`/operaciones/preliquidaciones/${preliq.id}/`, { estado: 'enviada' })
       try {
         await sendPreliquidacionToTelegram(preliq)
-        setSuccess('PreliquidaciÃ³n enviada y Telegram entregado.')
+        setSuccess('Preliquidación enviada y Telegram entregado.')
       } catch (telegramErr) {
-        setSuccess('PreliquidaciÃ³n enviada.')
+        setSuccess('Preliquidación enviada.')
         setError(errorMessage(telegramErr, 'No se pudo enviar el PDF por Telegram.'))
       }
       refrescarHistorial()
     } catch (err) {
       const data = err.response?.data || {}
-      setError(data.detail || Object.values(data).flat().join(' ') || 'No se pudo enviar la preliquidaciÃ³n.')
+      setError(data.detail || Object.values(data).flat().join(' ') || 'No se pudo enviar la preliquidación.')
     } finally {
       setSendingTelegramId(null)
     }
@@ -324,7 +324,7 @@ export default function PreliquidacionesPage() {
   const handleConfirmarYLiquidar = async () => {
     if (!preliqAConfirmar) return
     if (!fechaPago || !numeroFactura.trim()) {
-      setError('CompletÃ¡ fecha de pago y nÃºmero de factura.')
+      setError('Completá fecha de pago y número de factura.')
       return
     }
 
@@ -338,14 +338,14 @@ export default function PreliquidacionesPage() {
         factura: numeroFactura.trim(),
         fecha_pago: fechaPago,
       })
-      setSuccess('LiquidaciÃ³n generada correctamente.')
+      setSuccess('Liquidación generada correctamente.')
       setPreliqAConfirmar(null)
       setFechaPago(todayISO())
       setNumeroFactura('')
       refrescarHistorial()
     } catch (err) {
       const data = err.response?.data || {}
-      setError(data.detail || Object.values(data).flat().join(' ') || 'No se pudo generar la liquidaciÃ³n.')
+      setError(data.detail || Object.values(data).flat().join(' ') || 'No se pudo generar la liquidación.')
     } finally {
       setConfirmandoLiq(false)
     }
@@ -482,7 +482,7 @@ export default function PreliquidacionesPage() {
           {/* Card generar */}
           <Card sx={CARD}>
             <CardContent sx={{ p: { xs: 2.5, sm: 3.5 } }}>
-              <SectionLabel>Nueva preliquidaciÃ³n</SectionLabel>
+              <SectionLabel>Nueva preliquidación</SectionLabel>
 
               <Grid container spacing={2} sx={{ mb: 1 }}>
                 <Grid size={{ xs: 12, sm: 3 }}>
@@ -545,7 +545,7 @@ export default function PreliquidacionesPage() {
 
                   {viajes.length === 0 ? (
                     <Typography sx={{ color: 'rgba(255,255,255,0.25)', fontSize: 13, mb: 2 }}>
-                      No hay viajes habilitados sin preliquidar en ese perÃ­odo.
+                      No hay viajes habilitados sin preliquidar en ese período.
                     </Typography>
                   ) : (
                     <Box sx={{ overflowX: 'auto', mb: 2 }}>
@@ -760,7 +760,7 @@ export default function PreliquidacionesPage() {
                         <TableSortLabel active={orderBy === 'id'} direction={orderBy === 'id' ? order : 'asc'} onClick={() => handleRequestSort('id')} sx={{ color: 'inherit !important', '& .MuiTableSortLabel-icon': { color: 'rgba(255,255,255,0.7) !important' } }}>#</TableSortLabel>
                       </TableCell>
                       <TableCell sx={TH}>
-                        <TableSortLabel active={orderBy === 'periodo_desde'} direction={orderBy === 'periodo_desde' ? order : 'asc'} onClick={() => handleRequestSort('periodo_desde')} sx={{ color: 'inherit !important', '& .MuiTableSortLabel-icon': { color: 'rgba(255,255,255,0.7) !important' } }}>PerÃ­odo</TableSortLabel>
+                        <TableSortLabel active={orderBy === 'periodo_desde'} direction={orderBy === 'periodo_desde' ? order : 'asc'} onClick={() => handleRequestSort('periodo_desde')} sx={{ color: 'inherit !important', '& .MuiTableSortLabel-icon': { color: 'rgba(255,255,255,0.7) !important' } }}>Período</TableSortLabel>
                       </TableCell>
                       <TableCell sx={TH}>
                         <TableSortLabel active={orderBy === 'proveedor_nombre'} direction={orderBy === 'proveedor_nombre' ? order : 'asc'} onClick={() => handleRequestSort('proveedor_nombre')} sx={{ color: 'inherit !important', '& .MuiTableSortLabel-icon': { color: 'rgba(255,255,255,0.7) !important' } }}>Proveedor / Chofer</TableSortLabel>
@@ -783,7 +783,7 @@ export default function PreliquidacionesPage() {
                           sx={{ cursor: 'pointer', '&:hover': { bgcolor: 'rgba(255,255,255,0.03)' } }}
                         >
                           <TableCell sx={TD}>{p.id}</TableCell>
-                          <TableCell sx={TD}>{fmtFecha(p.periodo_desde)} â€“ {fmtFecha(p.periodo_hasta)}</TableCell>
+                          <TableCell sx={TD}>{fmtFecha(p.periodo_desde)} - {fmtFecha(p.periodo_hasta)}</TableCell>
                           <TableCell sx={{ ...TD, color: '#e2e8f0', fontWeight: 600 }}>{p.proveedor_nombre || '-'}</TableCell>
                           <TableCell sx={{ ...TD, textAlign: 'right' }}>{fmtPeso(p.total_sin_iva)}</TableCell>
                           <TableCell sx={{ ...TD, textAlign: 'right' }}>{fmtPeso(p.total_con_iva)}</TableCell>
@@ -866,7 +866,7 @@ export default function PreliquidacionesPage() {
                                         <TableCell sx={TD}>{d.remito_snapshot || '-'}</TableCell>
                                         <TableCell sx={TD}>
                                           {(d.adicionales_snapshot || []).length === 0 ? (
-                                            <Typography sx={{ fontSize: 11, color: 'rgba(255,255,255,0.2)' }}>â€”</Typography>
+                                            <Typography sx={{ fontSize: 11, color: 'rgba(255,255,255,0.2)' }}>–</Typography>
                                           ) : (
                                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.3 }}>
                                               {(d.adicionales_snapshot || []).map((a, i) => (
@@ -1019,7 +1019,7 @@ export default function PreliquidacionesPage() {
 
                 {!buscado ? (
                   <Typography sx={{ color: 'rgba(255,255,255,0.25)', fontSize: 12 }}>
-                    BuscÃ¡ viajes para ver el cÃ¡lculo.
+                    Buscá viajes para ver el cálculo.
                   </Typography>
                 ) : (
                   <>
@@ -1045,7 +1045,7 @@ export default function PreliquidacionesPage() {
                         <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: 12 }}>
                           Gastos ({selectedGastos.length})
                         </Typography>
-                        <Typography sx={{ color: '#f87171', fontSize: 12 }}>âˆ’ {fmtPeso(totalGastos)}</Typography>
+                        <Typography sx={{ color: '#f87171', fontSize: 12 }}>− {fmtPeso(totalGastos)}</Typography>
                       </Box>
                     )}
 
@@ -1075,7 +1075,7 @@ export default function PreliquidacionesPage() {
                   '&.Mui-disabled': { background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.3)' },
                 }}
               >
-                {loading ? 'Generando...' : 'Generar preliquidaciÃ³n'}
+                {loading ? 'Generando...' : 'Generar preliquidación'}
               </Button>
             )}
           </Box>
@@ -1103,7 +1103,7 @@ export default function PreliquidacionesPage() {
         </DialogTitle>
         <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2, pt: 1, bgcolor: '#1e293b' }}>
           <Typography sx={{ color: 'rgba(255,255,255,0.55)', fontSize: 13 }}>
-            {preliqAConfirmar?.proveedor_nombre || '-'} Â· {fmtFecha(preliqAConfirmar?.periodo_desde)} - {fmtFecha(preliqAConfirmar?.periodo_hasta)}
+            {preliqAConfirmar?.proveedor_nombre || '-'} · {fmtFecha(preliqAConfirmar?.periodo_desde)} - {fmtFecha(preliqAConfirmar?.periodo_hasta)}
           </Typography>
           <TextField
             label="Fecha de pago"
@@ -1115,7 +1115,7 @@ export default function PreliquidacionesPage() {
             fullWidth
           />
           <TextField
-            label="NÃºmero de factura"
+            label="Número de factura"
             value={numeroFactura}
             onChange={(e) => setNumeroFactura(e.target.value)}
             sx={darkField}
@@ -1134,7 +1134,7 @@ export default function PreliquidacionesPage() {
             startIcon={confirmandoLiq ? <CircularProgress size={16} color="inherit" /> : <CheckIcon />}
             sx={{ textTransform: 'none', fontWeight: 700 }}
           >
-            {confirmandoLiq ? 'Generando...' : 'Crear liquidaciÃ³n'}
+            {confirmandoLiq ? 'Generando...' : 'Crear liquidación'}
           </Button>
         </DialogActions>
       </Dialog>

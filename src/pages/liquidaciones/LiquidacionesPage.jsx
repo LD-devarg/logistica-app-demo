@@ -147,11 +147,11 @@ export default function LiquidacionesPage() {
 
   const handleGenerar = async () => {
     if (!proveedor || selected.length === 0) {
-      setError('SeleccionÃ¡ al menos una preliquidaciÃ³n confirmada.')
+      setError('Seleccioná al menos una preliquidación confirmada.')
       return
     }
     if (!factura.trim() || !fechaPago) {
-      setError('CompletÃ¡ nÃºmero de factura y fecha de pago.')
+      setError('Completá número de factura y fecha de pago.')
       return
     }
     setLoading(true)
@@ -165,7 +165,7 @@ export default function LiquidacionesPage() {
         fecha_pago:          fechaPago,
       }
       await client.post('/operaciones/liquidaciones/generar/', payload)
-      setSuccess('LiquidaciÃ³n generada correctamente.')
+      setSuccess('Liquidación generada correctamente.')
       setFactura('')
       setFechaPago(todayISO())
       setSelected([])
@@ -234,7 +234,7 @@ export default function LiquidacionesPage() {
           {/* Card generar */}
           <Card sx={CARD}>
             <CardContent sx={{ p: { xs: 2.5, sm: 3.5 } }}>
-              <SectionLabel>Nueva liquidaciÃ³n</SectionLabel>
+              <SectionLabel>Nueva liquidación</SectionLabel>
 
               <Grid container spacing={2} sx={{ mb: 2 }}>
                 <Grid size={{ xs: 12, sm: 5 }}>
@@ -256,7 +256,7 @@ export default function LiquidacionesPage() {
                 </Grid>
                 <Grid size={{ xs: 12, sm: 4 }}>
                   <TextField
-                    label="NÂ° Factura" value={factura}
+                    label="N° Factura" value={factura}
                     onChange={(e) => setFactura(e.target.value)}
                     fullWidth size="small" sx={darkField}
                     slotProps={{ input: { startAdornment: <InputAdornment position="start"><ReceiptIcon /></InputAdornment> } }}
@@ -281,7 +281,7 @@ export default function LiquidacionesPage() {
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1.5 }}>
                     <SectionLabel>
                       Preliquidaciones confirmadas
-                      {cargandoPraliqs ? ' â€¦' : ` (${preliqsConfirmadas.length})`}
+                      {cargandoPraliqs ? ' …' : ` (${preliqsConfirmadas.length})`}
                     </SectionLabel>
                     {preliqsConfirmadas.length > 0 && (
                       <Button size="small" sx={{ color: '#60a5fa', fontSize: 11, textTransform: 'none', py: 0 }}
@@ -306,7 +306,7 @@ export default function LiquidacionesPage() {
                           <TableRow>
                             <TableCell sx={{ ...TH, width: 40 }} padding="checkbox" />
                             <TableCell sx={TH}>#</TableCell>
-                            <TableCell sx={TH}>PerÃ­odo</TableCell>
+                            <TableCell sx={TH}>Período</TableCell>
                             <TableCell sx={{ ...TH, textAlign: 'right' }}>Sin IVA</TableCell>
                             <TableCell sx={{ ...TH, textAlign: 'right' }}>Con IVA</TableCell>
                             <TableCell sx={{ ...TH, textAlign: 'right' }}>Gastos</TableCell>
@@ -397,14 +397,14 @@ export default function LiquidacionesPage() {
           {/* Historial */}
           <Card sx={CARD}>
             <CardContent sx={{ p: { xs: 2.5, sm: 3.5 } }}>
-              <SectionLabel>Historial{proveedor ? ` â€” ${proveedor.nombre}` : ' â€” Todos los proveedores'}</SectionLabel>
+              <SectionLabel>Historial{proveedor ? ` - ${proveedor.nombre}` : ' - Todos los proveedores'}</SectionLabel>
               <Box sx={{ overflowX: 'auto', overflowY: 'auto', maxHeight: 420 }}>
                 <Table size="small" stickyHeader sx={{ minWidth: 850 }}>
                   <TableHead>
                     <TableRow>
                       <TableCell sx={TH}>#</TableCell>
                       <TableCell sx={TH}>Fecha</TableCell>
-                      <TableCell sx={TH}>PerÃ­odo</TableCell>
+                      <TableCell sx={TH}>Período</TableCell>
                       <TableCell sx={TH}>Proveedor / Chofer</TableCell>
                       <TableCell sx={TH}>Factura</TableCell>
                       <TableCell sx={TH}>Fecha pago</TableCell>
@@ -431,10 +431,10 @@ export default function LiquidacionesPage() {
                         >
                           <TableCell sx={TD}>{liq.id}</TableCell>
                           <TableCell sx={TD}>{fmtFecha(liq.fecha)}</TableCell>
-                          <TableCell sx={TD}>{fmtFecha(liq.periodo_desde)} â€“ {fmtFecha(liq.periodo_hasta)}</TableCell>
+                          <TableCell sx={TD}>{fmtFecha(liq.periodo_desde)} – {fmtFecha(liq.periodo_hasta)}</TableCell>
                           <TableCell sx={{ ...TD, color: '#e2e8f0', fontWeight: 600 }}>{liq.proveedor_nombre || '-'}</TableCell>
                           <TableCell sx={{ ...TD, color: liq.factura ? '#cbd5e1' : 'rgba(255,255,255,0.2)' }}>
-                            {liq.factura || 'â€”'}
+                            {liq.factura || '—'}
                           </TableCell>
                           <TableCell sx={TD}>{fmtFecha(liq.fecha_pago)}</TableCell>
                           <TableCell sx={TD}><EstadoPagoChip estado={liq.estado_pago} /></TableCell>

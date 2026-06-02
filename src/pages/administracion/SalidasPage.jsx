@@ -74,9 +74,9 @@ export default function SalidasPage() {
   return (
     <Box>
       <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-        <Box>
+        <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.35)', letterSpacing: 1, textTransform: 'uppercase', fontSize: 11 }}>Administración</Typography>
-          <Typography variant="h5" sx={{ fontWeight: 700, color: '#fff', mt: 0.5 }}>Salidas / Destinos</Typography>
+          <Typography variant="h5" sx={{ fontWeight: 700, color: '#fff'}}>Salidas / Destinos</Typography>
         </Box>
         <Button variant="contained" startIcon={<AddIcon />} onClick={() => abrir()} sx={BTN_SX}>Nueva salida</Button>
       </Box>
