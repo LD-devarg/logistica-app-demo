@@ -121,3 +121,4 @@ Lorenzo Diel — desarrollador full-stack con foco en automatización de proceso
 - GitHub: [@LD-devarg](https://github.com/LD-devarg)
 - LinkedIn: [lorenzo-diel](https://linkedin.com/in/lorenzo-diel-305aa8129)
 - Mail: lddevarg@gmail.com
+- Web: lddevarg@gmail.com
